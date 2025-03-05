@@ -1,0 +1,64 @@
+public class HistoList {
+private HistoNode front;
+
+public HistoList() {
+
+front = null;
+}
+
+public void addLetter(char let) {
+if (front == null) {
+
+front = new HistoNode(let, 1, null);
+
+return;
+}
+HistoNode current = front;
+while (current != null) {
+
+if (current.getLetter() == let) {
+
+current.setLetterCount(current.getLetterCount() + 1);
+return;
+}
+current = current.getNext();
+}
+front = new HistoNode(let, 1, front);
+}
+public int indexOf(char let) {
+
+int index = 0;
+HistoNode current = front;
+while (current != null) {
+
+if (current.getLetter() == let) {
+
+return index;
+
+}
+}
+private HistoNode nodeAt(int spot) {
+
+HistoNode current = front;
+int index = 0;
+while (current != null && index < spot) {
+
+current = current.getNext();
+index++;
+
+}
+return current;
+
+}
+public String toString() {
+
+StringBuilder output = new StringBuilder();
+HistoNode current = front;
+while (current != null) {
+output.append(current.getLetter()).append(" -
+").append(current.getLetterCount()).append("
+current = current.getNext();
+}
+return output.toString();
+}
+}
